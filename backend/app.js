@@ -10,6 +10,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
+// eslint-disable-next-line no-unused-vars
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const limiter = rateLimit({
@@ -38,6 +39,6 @@ app.use(router);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
-});
+}); */
