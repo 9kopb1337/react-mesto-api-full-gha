@@ -1,3 +1,4 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const JsonWebToken = require('jsonwebtoken');
 const User = require('../models/user');
@@ -19,12 +20,8 @@ const loginUser = (req, res, next) => {
         .compare(password, user.password)
         .then((isValidaUser) => {
           if (isValidaUser) {
-            const jwt = JsonWebToken.sign({ _id: user._id }, 'SECRET');
-            res.cookie('jwt', jwt, {
-              maxage: 360000,
-              httpOnly: true,
-            });
-            res.send(user);
+            const jwt = JsonWebToken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '1d' });
+            res.send(jwt);
           } else {
             throw new ErrorUnauthorized('Переданы некорректные данные.');
           }
