@@ -1,4 +1,4 @@
-export const BASE_URL = "https://novch.nomoredomains.xyz";
+export const BASE_URL = 'http://api.novch.nomorodomains.xyz';
 
 function checkRes(res) {
   if (res.ok) {
@@ -28,7 +28,7 @@ export const authorize = (email, password) => {
   }).then((res) => checkRes(res));
 };
 
-export const checkToken = (token) => {
+/* export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
@@ -37,4 +37,4 @@ export const checkToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   }).then((res) => checkRes(res));
-};
+}; */

@@ -1,10 +1,14 @@
-import { apiRes } from "./utils.js";
+// import { apiRes } from "./utils.js";
 
 class Api {
-  constructor(config) {
+  /* (constructor(config) {
     this._url = config.url;
     this._headers = config.headers;
     this._authorization = config.headers["authorization"];
+  } */
+
+  constructor({ baseUrl }) {
+    this._baseUrl = baseUrl;
   }
 
   _checkRes(res) {
