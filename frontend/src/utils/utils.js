@@ -10,7 +10,7 @@ const formValidation = {
 
 
 const apiRes = {
-  url: "https://mesto.nomoreparties.co/v1/cohort-63",
+  url: "https://api.novch.nomoredomains.xyz",
   headers: {
     "Content-Type": "application/json",
     authorization: "d1d57a13-4584-442b-a02a-78fc4756e763",
