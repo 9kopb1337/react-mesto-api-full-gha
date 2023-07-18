@@ -111,7 +111,7 @@ export default function App() {
       .catch((err) => console.log(err));
   }
 
-  const checkToken = () => {
+  /* const checkToken = () => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       console.log("jwt => ", jwt);
@@ -126,7 +126,7 @@ export default function App() {
           console.log(`Ошибка: ${err}`);
         });
     }
-  };
+  }; */
 
   useEffect(() => {
     checkToken();
