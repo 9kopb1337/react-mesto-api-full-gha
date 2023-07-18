@@ -19,7 +19,7 @@ class Api {
   }
 
   getProfileInfo() {
-    return fetch(`${this._url}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authorization,
       },
@@ -27,7 +27,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._url}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authorization,
       },
@@ -35,7 +35,7 @@ class Api {
   }
 
   patchProfileInfo({ name, about }) {
-    return fetch(`${this._url}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -46,7 +46,7 @@ class Api {
   }
 
   patchAvatar(data) {
-    return fetch(`${this._url}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -56,7 +56,7 @@ class Api {
   }
 
   postNewCard(data) {
-    return fetch(`${this._url}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -67,21 +67,21 @@ class Api {
   }
 
   deleteCardApi(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => this._checkRes(res));
   }
 
   likeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((res) => this._checkRes(res));
   }
 
   removeLikeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => this._checkRes(res));
@@ -96,4 +96,6 @@ class Api {
   }
 }
 
-export const api = new Api(apiRes);
+// export const api = new Api(apiRes);
+
+export const api = new Api({baseUrl: 'http://api.novch.nomoredomains.xyz/'});

@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import Header from "./Header.js";
-import Main from "./Main.js";
-import Footer from "./Footer.js";
-import ImagePopup from "./ImagePopup.js";
-import EditProfilePopup from "./EditProfilePopup.js";
-import EditAvatarPopup from "./EditAvatarPopup.js";
-import AddPlacePopup from "./AddPlacePopup.js";
-import InfoTooltip from "./InfoTooltip.js";
-import Register from "./Register.js";
-import Login from "./Login.js";
-import ProtectedRoute from "./ProtectedRoute.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import { api } from "../utils/Api.js";
-import * as auth from "../utils/auth.js";
-import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
-import "../pages/index.css";
+import React, { useEffect, useState } from 'react';
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js';
+import ImagePopup from './ImagePopup.js';
+import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
+import InfoTooltip from './InfoTooltip.js';
+import Register from './Register.js';
+import Login from './Login.js';
+import ProtectedRoute from './ProtectedRoute.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import { api } from '../utils/Api.js';
+import * as auth from '../utils/auth.js';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import '../pages/index.css';
 
 //Доделать APP
 
@@ -27,7 +27,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [card, setCard] = useState([]);
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [infoTooltip, setInfoTooltip] = useState(false);
   const [succes, setSucces] = useState(false);
@@ -129,8 +129,18 @@ export default function App() {
   }; */
 
   useEffect(() => {
-    checkToken();
-  }, []);
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          setEmail(res.data.email);
+          setIsLogged(true);
+          navigate('/');
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [navigate]);
 
   function handleRegister(email, password) {
     auth
@@ -138,7 +148,7 @@ export default function App() {
       .then(() => {
         setSucces(true);
         setInfoTooltip(true);
-        navigate("/sign-in");
+        navigate('/sign-in');
       })
       .catch((err) => {
         setSucces(false);
@@ -153,8 +163,8 @@ export default function App() {
       .then((res) => {
         if (res) {
           setIsLogged(true);
-          localStorage.setItem("jwt", res.token);
-          navigate("/");
+          localStorage.setItem('jwt', res.token);
+          navigate('/');
           setEmail(email);
         }
       })
@@ -166,7 +176,7 @@ export default function App() {
   }
 
   function handleLogOut() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('jwt');
     setIsLogged(false);
   }
 
@@ -183,11 +193,11 @@ export default function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+      <div className='page'>
         <Header isLogged={isLogged} email={email} handleLogOut={handleLogOut} />
         <Routes>
           <Route
-            path="/"
+            path='/'
             element={
               <ProtectedRoute
                 isLogged={isLogged}
@@ -203,30 +213,30 @@ export default function App() {
             }
           />
           <Route
-            path="/sign-up"
+            path='/sign-up'
             element={<Register onRegister={handleRegister} />}
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path='/sign-in' element={<Login onLogin={handleLogin} />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
         <Footer />
         <EditProfilePopup
-          name="profile"
-          title="Редактировать профиль"
+          name='profile'
+          title='Редактировать профиль'
           isOpen={isEditProfilePopupOpen}
           onClickClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
         <AddPlacePopup
-          name="place"
-          title="Новое место"
+          name='place'
+          title='Новое место'
           isOpen={isAddPlacePopupOpen}
           onClickClose={closeAllPopups}
           onAddPlace={handleAddPlace}
         />
         <EditAvatarPopup
-          name="avatar"
-          title="Обновить аватар"
+          name='avatar'
+          title='Обновить аватар'
           isOpen={isEditAvatarPopupOpen}
           onClickClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
