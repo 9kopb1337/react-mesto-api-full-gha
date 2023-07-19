@@ -20,13 +20,13 @@ const loginUser = (req, res, next) => {
         .compare(password, user.password)
         .then((isValidaUser) => {
           if (isValidaUser) {
-            const jwt = JsonWebToken.sign({ id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '1d' });
+            const jwt = JsonWebToken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '1d' });
             res.cookie('jwt', jwt, {
               maxAge: 86400,
               httpOnly: true,
               sameSite: true,
             });
-            res.send(user);
+            res.send(jwt);
           } else {
             throw new ErrorUnauthorized('Переданы некорректные данные.');
           }
