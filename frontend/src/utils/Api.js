@@ -94,4 +94,4 @@ class Api {
 
 // export const api = new Api(apiRes);
 
-export const api = new Api({baseUrl: 'http://api.novch.nomoredomains.xyz/'});
+export const api = new Api({baseUrl: 'http://api.novch.nomoredomains.xyz'});
