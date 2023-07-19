@@ -142,12 +142,10 @@ export default function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        if (res) {
           setIsLogged(true);
           localStorage.setItem('jwt', res.token);
           navigate('/');
           setEmail(email);
-        }
       })
       .catch((err) => {
         setSucces(false);
