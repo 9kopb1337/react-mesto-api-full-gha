@@ -141,9 +141,9 @@ export default function App() {
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
-      .then((res) => {
+      .then(() => {
           setIsLogged(true);
-          localStorage.setItem('jwt', res.token);
+          //localStorage.setItem('jwt', res.token);
           navigate('/');
           setEmail(email);
       })
