@@ -110,8 +110,8 @@ export default function App() {
   }
 
   useEffect(() => {    
-    const jwt = localStorage.getItem('jwt'); //
     if (jwt) {
+      const jwt = localStorage.getItem('jwt');
       auth
         .getContent(jwt)
         .then((res) => {
