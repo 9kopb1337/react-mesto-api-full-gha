@@ -26,7 +26,7 @@ const loginUser = (req, res, next) => {
               httpOnly: true,
               sameSite: true,
             });
-            res.send(jwt);
+            res.send(user);
           } else {
             throw new ErrorUnauthorized('Переданы некорректные данные.');
           }
