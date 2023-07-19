@@ -28,7 +28,10 @@ app.use(helmet());
 app.use(express.json());
 app.use(CookieParser());
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://novch.nomoredomains.xyz', 'https://novch.nomoredomains.xyz', 'http://localhost:3000', 'https://localhost:3000'],
+  credentials: true,
+}));
 
 mongoose.connect(DB_URL);
 
