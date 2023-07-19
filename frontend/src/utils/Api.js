@@ -10,32 +10,32 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}.`);
   }
 
-  getProfileInfo() {
+  getProfileInfo(jwt) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  getCards() {
+  getCards(jwt) {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  patchProfileInfo({ name, about }) {
+  patchProfileInfo({ name, about }, jwt) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -45,12 +45,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  patchAvatar(data) {
+  patchAvatar(data, jwt) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -59,12 +59,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  postNewCard(data) {
+  postNewCard(data, jwt) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -74,34 +74,34 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  deleteCardApi(cardId) {
+  deleteCardApi(cardId, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  likeCard(cardId) {
+  likeCard(cardId, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  removeLikeCard(cardId) {
+  removeLikeCard(cardId, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
