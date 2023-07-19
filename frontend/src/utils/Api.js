@@ -1,13 +1,5 @@
-// import { apiRes } from "./utils.js";
-
 class Api {
-  /* (constructor(config) {
-    this._url = config.url;
-    this._headers = config.headers;
-    this._authorization = config.headers["authorization"];
-  } */
-
-  constructor({ baseUrl }) {
+  constructor({baseUrl}) {
     this._baseUrl = baseUrl;
   }
 
@@ -20,17 +12,15 @@ class Api {
 
   getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._authorization,
-      },
+      headers: this._headers,
+      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._authorization,
-      },
+      headers: this._headers,
+      credentials: this._credentials
     }).then((res) => this._checkRes(res));
   }
 
@@ -38,6 +28,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({
         name,
         about,
@@ -49,6 +40,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -59,6 +51,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -70,6 +63,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: this._credentials
     }).then((res) => this._checkRes(res));
   }
 
@@ -77,6 +71,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
+      credentials: this._credentials
     }).then((res) => this._checkRes(res));
   }
 
@@ -84,6 +79,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: this._credentials
     }).then((res) => this._checkRes(res));
   }
 

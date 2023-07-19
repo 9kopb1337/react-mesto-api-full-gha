@@ -16,8 +16,6 @@ import * as auth from '../utils/auth.js';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import '../pages/index.css';
 
-//Доделать APP
-
 export default function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
@@ -110,23 +108,6 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   }
-
-  /* const checkToken = () => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      console.log("jwt => ", jwt);
-      auth
-        .checkToken(jwt)
-        .then((res) => {
-          setEmail(res.data.email);
-          setIsLogged(true);
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
-    }
-  }; */
 
   useEffect(() => {
     if (localStorage.getItem('jwt')) {
