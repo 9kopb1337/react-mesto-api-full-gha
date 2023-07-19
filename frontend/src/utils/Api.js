@@ -14,7 +14,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
@@ -24,7 +24,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials
     }).then((res) => this._checkRes(res));
@@ -35,7 +35,7 @@ class Api {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -50,7 +50,7 @@ class Api {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -64,7 +64,7 @@ class Api {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -79,7 +79,7 @@ class Api {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials
     }).then((res) => this._checkRes(res));
@@ -90,7 +90,7 @@ class Api {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials
     }).then((res) => this._checkRes(res));
@@ -101,7 +101,7 @@ class Api {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${'jwt'}`
       },
       credentials: this._credentials
     }).then((res) => this._checkRes(res));
