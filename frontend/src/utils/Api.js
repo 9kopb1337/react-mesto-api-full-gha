@@ -1,5 +1,5 @@
 class Api {
-  constructor({baseUrl}) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
   }
 
@@ -14,7 +14,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
@@ -24,18 +24,18 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
-      credentials: this._credentials
+      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
   patchProfileInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -47,10 +47,10 @@ class Api {
 
   patchAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -61,10 +61,10 @@ class Api {
 
   postNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -76,39 +76,39 @@ class Api {
 
   deleteCardApi(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
-      credentials: this._credentials
+      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
-      credentials: this._credentials
+      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
   removeLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'jwt'}`
+        'Authorization': `Bearer ${'jwt'}`,
       },
-      credentials: this._credentials
+      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  toggleLike(cardId, isLiked){
-    if (isLiked){
+  toggleLike(cardId, isLiked) {
+    if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
       return this.likeCard(cardId);
@@ -118,4 +118,10 @@ class Api {
 
 // export const api = new Api(apiRes);
 
-export const api = new Api({baseUrl: 'https://api.novch.nomoredomains.xyz'});
+export const api = new Api({
+  baseUrl: 'https://api.novch.nomoredomains.xyz',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+  },
+});
