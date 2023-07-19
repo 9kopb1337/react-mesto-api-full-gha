@@ -117,7 +117,7 @@ export default function App() {
         .then((res) => {
           setEmail(res.data.email);
           setIsLogged(true);
-          navigate('/');
+          navigate('/', {replace: true});
         })
         .catch((err) => console.log(err));
     }
