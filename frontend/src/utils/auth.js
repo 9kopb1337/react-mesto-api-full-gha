@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.novch.nomorodomains.xyz';
+export const BASE_URL = 'https://api.novch.nomoredomains.xyz';
 
 function checkRes(res) {
   if (res.ok) {
