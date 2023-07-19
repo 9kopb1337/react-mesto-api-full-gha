@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.70.248
+IP-адрес 158.160.108.11
 
 Frontend https://novch.nomoredomains.xyz
 
