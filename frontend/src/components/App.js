@@ -115,7 +115,7 @@ export default function App() {
       auth
         .getContent(jwt)
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.user.email);
           setIsLogged(true);
           navigate('/', {replace: true});
         })
