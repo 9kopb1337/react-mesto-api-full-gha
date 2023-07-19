@@ -1,6 +1,4 @@
-//export const BASE_URL = 'https://api.novch.nomoredomains.xyz';
-
-export const BASE_URL = "https://localhost:3000";
+export const BASE_URL = 'https://api.novch.nomoredomains.xyz';
 
 function checkRes(res) {
   if (res.ok) {
