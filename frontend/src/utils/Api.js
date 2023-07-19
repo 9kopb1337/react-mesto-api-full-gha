@@ -118,10 +118,12 @@ class Api {
 
 // export const api = new Api(apiRes);
 
-export const api = new Api({
+/* export const api = new Api({
   baseUrl: 'https://api.novch.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
   },
-});
+}); */
+
+export const api = new Api({baseUrl: 'https://localhost:3000'});
