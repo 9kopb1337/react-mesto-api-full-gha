@@ -58,9 +58,10 @@ export default function App() {
   }
 
   function handleCardLike(card) {
+    const jwt = localStorage.getItem('jwt');
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
     api
-      .toggleLike(card._id, isLiked)
+      .toggleLike(card._id, !isLiked, jwt)
       .then((newCard) => {
         setCard((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -151,7 +152,6 @@ export default function App() {
       .then((newCard) => {
         setCard((state) => [newCard, ...state]);
         closeAllPopups();
-        console.log(card._id);
       })
       .catch((err) => console.log(err));
   }
