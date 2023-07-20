@@ -122,7 +122,6 @@ class Api {
         'Content-Type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
-      credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
