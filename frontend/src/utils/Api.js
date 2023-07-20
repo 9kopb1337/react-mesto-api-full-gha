@@ -85,12 +85,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  /*  likeCard(cardId) {
+  likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
@@ -101,7 +101,7 @@ class Api {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
@@ -113,9 +113,9 @@ class Api {
     } else {
       return this.likeCard(cardId);
     }
-  } */
+  }
 
-  likeCard(cardId, isLiked) {
+  /*  likeCard(cardId, isLiked) {
     const methodToUse = isLiked ? 'PUT' : 'DELETE';
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: methodToUse,
@@ -124,7 +124,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     }).then((res) => this._checkRes(res));
-  }
+  } */
 }
 
 //const api = new Api({baseUrl: 'http://localhost:3000'});
