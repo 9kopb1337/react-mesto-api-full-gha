@@ -19,17 +19,11 @@ const loginUser = (req, res, next) => {
       bcrypt
         .compare(password, user.password)
         .then((isValidaUser) => {
-          if (isValidaUser) {
-            const jwt = JsonWebToken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '1d' });
-            res.cookie('jwt', jwt, {
-              maxAge: 86400,
-              httpOnly: true,
-              sameSite: true,
-            });
-            res.send(user);
-          } else {
+          if (!isValidaUser) {
             throw new ErrorUnauthorized('Переданы некорректные данные.');
           }
+          const token = JsonWebToken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '1d' });
+          return res.send({ token });
         })
         .catch(next);
     })
