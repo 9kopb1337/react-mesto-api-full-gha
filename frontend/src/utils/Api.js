@@ -107,12 +107,23 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  toggleLike(cardId, isLiked) {
+ /* toggleLike(cardId, isLiked) {
     if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
       return this.likeCard(cardId);
     }
+  } */
+
+  toggleLike(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: `${!isLiked ? 'DELETE' : 'PUT'}`,
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+      credentials: this._credentials,
+    }).then((res) => this._checkRes(res));
   }
 
   /*  likeCard(cardId, isLiked) {
