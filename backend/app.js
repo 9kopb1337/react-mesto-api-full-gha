@@ -24,19 +24,16 @@ const limiter = rateLimit({
 const app = express();
 
 app.use(helmet());
-
+app.use(requestLogger);
 app.use(express.json());
 app.use(CookieParser());
 
 app.use(cors({
-  origin: ['http://novch.nomoredomains.xyz', 'https://novch.nomoredomains.xyz', 'http://localhost:3000', 'https://localhost:3000'],
+  origin: true,
   credentials: true,
 }));
 
 mongoose.connect(DB_URL);
-
-app.use(requestLogger);
-app.use(errorLogger);
 
 app.use(limiter);
 
@@ -47,7 +44,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(router);
-
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
