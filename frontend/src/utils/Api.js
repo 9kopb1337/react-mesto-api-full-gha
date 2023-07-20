@@ -85,7 +85,7 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  /*  likeCard(cardId) {
+  likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
@@ -107,7 +107,7 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  toggleLike(cardId, isLiked) {
+/*  toggleLike(cardId, isLiked) {
     if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
@@ -115,7 +115,7 @@ class Api {
     }
   } */
 
-  likeCard(cardId, isLiked) {
+/*  likeCard(cardId, isLiked) {
     if (isLiked) {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'PUT',
@@ -135,7 +135,7 @@ class Api {
         credentials: this._credentials,
       }).then((res) => this._checkRes(res));
     }
-  }
+  } */
 }
 //const api = new Api({baseUrl: 'http://localhost:3000'});
 
