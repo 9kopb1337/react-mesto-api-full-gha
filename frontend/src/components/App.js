@@ -59,7 +59,7 @@ export default function App() {
 
   function handleCardLike(card) {
     const jwt = localStorage.getItem('jwt');
-    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .toggleLike(card._id, !isLiked, jwt)
       .then((newCard) => {
