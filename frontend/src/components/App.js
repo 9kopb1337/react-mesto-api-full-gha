@@ -166,7 +166,7 @@ export default function App() {
       Promise.all([api.getProfileInfo(), api.getCards()])
         .then(([user, card]) => {
           console.log(user, card);
-          console.log(jwt, localStorage.getItem('jwt'));
+          console.log(localStorage.getItem('jwt'));
           setCurrentUser(user);
           setCard(card);
         })
