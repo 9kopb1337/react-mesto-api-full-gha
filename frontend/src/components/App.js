@@ -11,7 +11,7 @@ import Register from './Register.js';
 import Login from './Login.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-import { api } from '../utils/Api.js';
+import api from '../utils/Api.js';
 import * as auth from '../utils/auth.js';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import '../pages/index.css';
@@ -58,13 +58,12 @@ export default function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    api
-      .toggleLike(card._id, isLiked)
+    const isLiked = card.likes.some((user) => user === currentUser._id);
+    (isLiked === true ? api.removeLikeCard(card._id) : api.likeCard(card._id, true))
       .then((newCard) => {
+        console.log(isLiked);
         setCard((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === newCard.data._id ? newCard.data : c))
         );
       })
       .catch((err) => console.log(err));

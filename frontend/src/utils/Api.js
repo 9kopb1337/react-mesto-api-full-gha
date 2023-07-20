@@ -1,6 +1,6 @@
 class Api {
-  constructor({ baseUrl }) {
-    this._baseUrl = baseUrl;
+  constructor(options) {
+    this._baseUrl = options.baseUrl;
   }
 
   _checkRes(res) {
@@ -10,32 +10,32 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}.`);
   }
 
-  getProfileInfo(jwt) {
+  getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  getCards(jwt) {
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  patchProfileInfo({ name, about }, jwt) {
+  patchProfileInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -45,12 +45,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  patchAvatar(data, jwt) {
+  patchAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -59,12 +59,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  postNewCard(data, jwt) {
+  postNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
       body: JSON.stringify({
@@ -74,54 +74,50 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  deleteCardApi(cardId, jwt) {
+  deleteCardApi(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  likeCard(cardId, jwt) {
+  likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  removeLikeCard(cardId, jwt) {
+  removeLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${jwt}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       credentials: this._credentials,
     }).then((res) => this._checkRes(res));
   }
 
-  toggleLike(cardId, isLiked) {
+  /*toggleLike(cardId, isLiked) {
     if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
       return this.likeCard(cardId);
     }
-  }
+  }*/
 }
 
-export const api = new Api({
-  baseUrl: 'https://api.novch.nomoredomains.xyz',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-  },
-}); 
+//const api = new Api({baseUrl: 'http://localhost:3000'});
 
+const api = new Api({baseUrl: 'https://api.novch.nomoredomains.xyz'});
 
+export default api;
