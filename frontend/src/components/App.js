@@ -58,12 +58,13 @@ export default function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((user) => user === currentUser._id);
-    (isLiked === true ? api.removeLikeCard(card._id) : api.likeCard(card._id, true))
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api
+      .toggleLike(card._id)
       .then((newCard) => {
         console.log(isLiked);
         setCard((state) =>
-          state.map((c) => (c._id === newCard._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
       .catch((err) => console.log(err));
@@ -109,7 +110,7 @@ export default function App() {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
       auth
@@ -119,7 +120,7 @@ export default function App() {
           console.log(res.jwt, localStorage.getItem('jwt'));
           setEmail(res.user.email);
           setIsLogged(true);
-          navigate('/', {replace: true});
+          navigate('/', { replace: true });
         })
         .catch((err) => console.log(err));
     }
@@ -144,10 +145,10 @@ export default function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-          setIsLogged(true);
-          localStorage.setItem('jwt', res.token);
-          navigate('/');
-          setEmail(email);
+        setIsLogged(true);
+        localStorage.setItem('jwt', res.token);
+        navigate('/');
+        setEmail(email);
       })
       .catch((err) => {
         setSucces(false);

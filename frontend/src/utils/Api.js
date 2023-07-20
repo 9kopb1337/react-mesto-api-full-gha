@@ -107,13 +107,13 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  /*toggleLike(cardId, isLiked) {
+  toggleLike(cardId, isLiked) {
     if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
       return this.likeCard(cardId);
     }
-  }*/
+  }
 }
 
 //const api = new Api({baseUrl: 'http://localhost:3000'});
