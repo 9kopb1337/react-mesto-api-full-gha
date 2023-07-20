@@ -63,7 +63,7 @@ export default function App() {
       .then((newCard) => {
         console.log(isLiked);
         setCard((state) =>
-          state.map((c) => (c._id === newCard.data._id ? newCard.data : c))
+          state.map((c) => (c._id === newCard._id ? newCard : c))
         );
       })
       .catch((err) => console.log(err));
@@ -104,6 +104,7 @@ export default function App() {
       .then((newCard) => {
         setCard((state) => [newCard, ...state]);
         closeAllPopups();
+        console.log(card._id);
       })
       .catch((err) => console.log(err));
   }
