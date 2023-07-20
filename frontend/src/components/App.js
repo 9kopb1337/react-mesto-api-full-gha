@@ -59,7 +59,7 @@ export default function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    (isLiked ? api.removeLikeCard(card._id) : api.likeCard(card._id), true)
+    (isLiked ? api.removeLikeCard(card._id) : api.likeCard(card._id, true))
       .then((newCard) => {
         setCard((state) =>
           state.map((c) => (c._id === newCard._id ? newCard : c))
