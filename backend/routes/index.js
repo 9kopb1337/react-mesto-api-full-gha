@@ -11,8 +11,8 @@ router.post('/signin', validateUserSignIn, loginUser);
 
 router.use(auth);
 
-router.use('/users', userRoutes);
-router.use('/cards', cardsRoutes);
+router.use('/users', auth, userRoutes);
+router.use('/cards', auth, cardsRoutes);
 
 router.use('*', (req, res, next) => {
   next(new ErrorNotFound('Маршрут не найден!'));
