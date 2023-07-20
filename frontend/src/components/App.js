@@ -164,7 +164,7 @@ export default function App() {
         .then((res) => {
           setEmail(res.email);
           setIsLogged(true);
-          navigate('/', { replace: true });
+          navigate('/');
         })
         .catch((err) => console.log(err));
     }
