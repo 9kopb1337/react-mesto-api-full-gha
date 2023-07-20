@@ -139,9 +139,7 @@ export default function App() {
       auth
         .getContent(jwt)
         .then((res) => {
-          console.log(res.user, res.card, res.user.email);
-          console.log(res.jwt, localStorage.getItem('jwt'));
-          setEmail(res.user.email);
+          setEmail(res.data.email);
           setIsLogged(true);
           navigate('/', { replace: true });
         })
