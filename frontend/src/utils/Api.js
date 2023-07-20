@@ -107,15 +107,15 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-/*  toggleLike(cardId, isLiked) {
+  toggleLike(cardId, isLiked) {
     if (isLiked) {
       return this.removeLikeCard(cardId);
     } else {
       return this.likeCard(cardId);
     }
-  } */
+  }
 
-/*  likeCard(cardId, isLiked) {
+  /*  likeCard(cardId, isLiked) {
     if (isLiked) {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'PUT',

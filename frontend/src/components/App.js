@@ -59,6 +59,18 @@ export default function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    api
+      .toggleLike(card._id, isLiked)
+      .then((newCard) => {
+        setCard((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+
+  /*  function handleCardLike(card) {
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
     (isLiked ? api.removeLikeCard(card._id) : api.likeCard(card._id))
       .then((newCard) => {
         setCard((state) =>
@@ -66,7 +78,7 @@ export default function App() {
         );
       })
       .catch((err) => console.log(err));
-  }
+  } */
 
   /*  function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
