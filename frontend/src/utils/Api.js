@@ -115,9 +115,9 @@ class Api {
     }
   } */
 
-  toggleLike(cardId, isLiked) {
+  toggleLike(cardId, like) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: `${isLiked ? 'DELETE' : 'PUT'}`,
+      method: `${like ? 'DELETE' : 'PUT'}`,
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
