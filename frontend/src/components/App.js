@@ -156,13 +156,13 @@ export default function App() {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
+  useEffect(() => {    
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
       auth
         .getContent(jwt)
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setIsLogged(true);
           navigate('/', { replace: true });
         })
