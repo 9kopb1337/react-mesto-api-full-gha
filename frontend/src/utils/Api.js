@@ -85,7 +85,7 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  likeCard(cardId) {
+  /*  likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
@@ -113,20 +113,30 @@ class Api {
     } else {
       return this.likeCard(cardId);
     }
-  }
-
-  /*  likeCard(cardId, isLiked) {
-    const methodToUse = isLiked ? 'PUT' : 'DELETE';
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: methodToUse,
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }).then((res) => this._checkRes(res));
   } */
-}
 
+  likeCard(cardId, isLiked) {
+    if (isLiked) {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        },
+        credentials: this._credentials,
+      }).then((res) => this._checkRes(res));
+    } else {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        },
+        credentials: this._credentials,
+      }).then((res) => this._checkRes(res));
+    }
+  }
+}
 //const api = new Api({baseUrl: 'http://localhost:3000'});
 
 const api = new Api({ baseUrl: 'https://api.novch.nomoredomains.xyz' });
