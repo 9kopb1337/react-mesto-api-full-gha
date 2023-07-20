@@ -107,14 +107,6 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
- /* toggleLike(cardId, isLiked) {
-    if (isLiked) {
-      return this.removeLikeCard(cardId);
-    } else {
-      return this.likeCard(cardId);
-    }
-  } */
-
   toggleLike(cardId, isLiked, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: `${!isLiked ? 'DELETE' : 'PUT'}`,
@@ -125,27 +117,6 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  /*  likeCard(cardId, isLiked) {
-    if (isLiked) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        },
-        credentials: this._credentials,
-      }).then((res) => this._checkRes(res));
-    } else {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        },
-        credentials: this._credentials,
-      }).then((res) => this._checkRes(res));
-    }
-  } */
 }
 //const api = new Api({baseUrl: 'http://localhost:3000'});
 
