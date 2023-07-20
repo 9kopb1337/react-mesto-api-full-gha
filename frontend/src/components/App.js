@@ -115,6 +115,8 @@ export default function App() {
       auth
         .getContent(jwt)
         .then((res) => {
+          console.log(user, card);
+          console.log(jwt, localStorage.getItem('jwt'));
           setEmail(res.user.email);
           setIsLogged(true);
           navigate('/', {replace: true});
@@ -163,6 +165,8 @@ export default function App() {
     if (isLogged) {
       Promise.all([api.getProfileInfo(), api.getCards()])
         .then(([user, card]) => {
+          console.log(user, card);
+          console.log(jwt, localStorage.getItem('jwt'));
           setCurrentUser(user);
           setCard(card);
         })
