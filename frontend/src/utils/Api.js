@@ -120,7 +120,7 @@ class Api {
       method: `${!isLiked ? 'DELETE' : 'PUT'}`,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${'jwt'}`,
+        'Authorization': `Bearer ${jwt}`,
       },
     }).then((res) => this._checkRes(res));
   }
