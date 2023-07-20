@@ -57,7 +57,7 @@ export default function App() {
     setCardOpen(true);
   }
 
-  function handleCardLike(card) {
+  /*  function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .toggleLike(card._id, isLiked)
@@ -66,6 +66,19 @@ export default function App() {
         setCard((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
+      })
+      .catch((err) => console.log(err));
+  }
+*/
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((user) => user === currentUser._id);
+    api
+      .likeCard(card._id, isLiked)
+      .then((newCard) => {
+        setCard((state) => {
+          state.map((c) => (c._id === card._id ? newCard : c));
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -166,8 +179,6 @@ export default function App() {
     if (isLogged) {
       Promise.all([api.getProfileInfo(), api.getCards()])
         .then(([user, card]) => {
-          console.log(user, card);
-          console.log(localStorage.getItem('jwt'));
           setCurrentUser(user);
           setCard(card);
         })
